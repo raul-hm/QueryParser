@@ -22,10 +22,18 @@ public class QueryParserShould {
 	@ParameterizedTest()
 	@CsvSource({"teacher,teacher","'    teacher    ',teacher","TEACHER,teacher","'tEaCHer   ',teacher"})
 	
-	void parsea_un_token_en_string_de_una_palabra_contemplando_mayúsculas_y_espacios_en_blanco(String Valor, String ValorEsperado) {
+	void parsea_un_token_en_string_de_una_palabra_contemplando_mayúsculas_y_espacios_en_blanco_y_plurales(String Valor, String ValorEsperado) {
 		
 		String resultado = queryparser.Parse(Valor);
 		
 		assertThat(resultado, is(ValorEsperado));
+	}
+	
+	@Test()
+	void parsea_un_token_en_string_de_una_palabra_en_plural_y_minúsculas() {
+		
+		String resultado = queryparser.Parse("teachers");
+		
+		assertThat(resultado,is("teacher"));
 	}
 }
