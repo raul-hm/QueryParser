@@ -8,7 +8,7 @@ public class QueryParser {
 	
 	public String Parse(String query) {
 		
-		return query;
+		return (query.trim());
 	}
 
 }
