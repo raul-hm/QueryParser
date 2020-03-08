@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class QueryParserShould {
 	
@@ -17,28 +19,13 @@ public class QueryParserShould {
 		queryparser = new QueryParser();
 	}
 	
-	@Test
-	void parsea_un_token_en_string_de_una_palabra() {
-		
-		
-		String valor = queryparser.Parse("teacher");
-		
-		assertThat(valor, is("teacher"));
-	}
+	@ParameterizedTest()
+	@CsvSource({"teacher,teacher","'    teacher    ',teacher","TEACHER,teacher","'tEaCHer   ',teacher"})
 	
-	@Test
-	void parsea_un_token_en_string_de_una_palabra_con_espacios() {
+	void parsea_un_token_en_string_de_una_palabra_contemplando_mayúsculas_y_espacios_en_blanco(String Valor, String ValorEsperado) {
 		
-		String valor = queryparser.Parse("   teacher");
+		String resultado = queryparser.Parse(Valor);
 		
-		assertThat(valor, is("teacher"));
-	}
-	
-	@Test
-	void parsea_un_token_en_string_de_una_palabra_en_mayúsculas_sin_espacios() {
-		
-		String valor =queryparser.Parse("TEACHER");
-		
-		assertThat(valor,is("teacher"));
+		assertThat(resultado, is(ValorEsperado));
 	}
 }
