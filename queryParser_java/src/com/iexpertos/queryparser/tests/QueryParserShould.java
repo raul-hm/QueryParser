@@ -8,8 +8,13 @@ import org.junit.jupiter.api.Test;
 class QueryParserShould {
 
 	@Test
-	void test() {
-		assertThat(true, is(true));
+	void parsea_un_token_en_string_de_una_palabra() {
+		
+		QueryParser queryparser = new QueryParser();
+		
+		String valor = queryparser.Parse("teacher");
+		
+		assertThat(valor, is("teacher"));
 	}
 
 }
