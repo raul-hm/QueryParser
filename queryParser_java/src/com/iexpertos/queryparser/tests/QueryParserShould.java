@@ -36,4 +36,12 @@ public class QueryParserShould {
 		
 		assertThat(resultado,is("teacher"));
 	}
+	
+	@Test()
+	void parsea_un_token_en_string_de_una_palabra_en_plural_y_mayúsculas() {
+		
+		String resultado = queryparser.Parse("TEACHERS");
+		
+		assertThat(resultado,is("teacher"));
+	}
 }
