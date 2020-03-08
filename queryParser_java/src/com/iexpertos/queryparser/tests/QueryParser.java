@@ -9,5 +9,4 @@ public class QueryParser {
 		}
 		return (query.trim().toLowerCase());
 	}
-
 }
